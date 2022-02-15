@@ -8,7 +8,7 @@ function generateColorsOfPalette(color1, color2, color3, color4) {
   }
 }
 
-generateColorsOfPalette('black', 'darkblue', 'darkgreen', 'darkmagenta');
+generateColorsOfPalette('black', 'darkcyan', 'yellowgreen', 'brown');
 
 const pixelBoard = document.getElementById('pixel-board');
 
