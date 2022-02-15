@@ -21,3 +21,5 @@ function generatePixelBoard() {
 }
 
 generatePixelBoard();
+
+window.onload = colors[0].classList.add('selected');

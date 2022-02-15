@@ -17,13 +17,12 @@ body {
 }
 /* 
 Últimas 3 propriedades (display, flex-flow e justify-content) "copiadas" do exercicio do Jogo da Velha, arquivo style.css (https://github.com/tryber/dojo-jogo-da-velha-fundamentos-5.4/blob/main/style.css)
-Pesquisa sobre felx-flow no site https://developer.mozilla.org/pt-BR/docs/Web/CSS/flex-direction;
+Pesquisa sobre flex-flow no site https://developer.mozilla.org/pt-BR/docs/Web/CSS/flex-direction;
 Pesquisa sobre justify-content no site https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content;
 */
 
 .pixel {
   background-color: white;
-  display: inline-block;
   border: 1px solid black;
   width: 40px;
   height: 40px;
