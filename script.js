@@ -9,3 +9,5 @@ function generateColorOfDivs(color1, color2, color3, color4) {
 }
 
 generateColorOfDivs('black', 'darkblue', 'darkgreen', 'darkmagenta');
+
+const pixelBoard = document.getElementById('pixel-board');
