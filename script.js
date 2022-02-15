@@ -23,3 +23,14 @@ function generatePixelBoard() {
 generatePixelBoard();
 
 window.onload = colors[0].classList.add('selected');
+
+for (let color of colors) {
+  color.addEventListener('click', addClassSelected);
+};
+
+function addClassSelected(event) {
+  for (let color of colors) {
+    color.classList.remove('selected');
+  }
+  event.target.classList.add('selected');
+}
