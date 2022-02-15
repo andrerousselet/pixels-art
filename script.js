@@ -16,7 +16,6 @@ function generatePixelBoard() {
   for (let index = 0; index < 25; index += 1) {
     const pixel = document.createElement('div');
     pixel.classList.add('pixel');
-    pixel.style.background = 'white';
     pixelBoard.appendChild(pixel);
   }
 }
