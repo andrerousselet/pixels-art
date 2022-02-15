@@ -4,3 +4,15 @@
   width: 100px;
   height: 100px;
 }
+
+#pixel-board {
+  padding: 0;
+  width: 510px;
+}
+
+.pixel {
+  border: 1px solid black;
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
