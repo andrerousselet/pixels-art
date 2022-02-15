@@ -1,13 +1,23 @@
-const divs = document.getElementsByClassName('color');
+const colors = document.getElementsByClassName('color');
 
-function generateColorOfDivs(color1, color2, color3, color4) {
-  const coresDaPaleta = [color1, color2, color3, color4];
+function generateColorsOfPalette(color1, color2, color3, color4) {
+  const colorsOfPalette = [color1, color2, color3, color4];
   for (let index = 0; index < 4; index += 1) {
-    divs[index].id = (coresDaPaleta[index]);
-    divs[index].style.background = coresDaPaleta[index];
+    colors[index].id = (colorsOfPalette[index]);
+    colors[index].style.background = colorsOfPalette[index];
   }
 }
 
-generateColorOfDivs('black', 'darkblue', 'darkgreen', 'darkmagenta');
+generateColorsOfPalette('black', 'darkblue', 'darkgreen', 'darkmagenta');
 
 const pixelBoard = document.getElementById('pixel-board');
+
+function generatePixelBoard() {
+  for (let index = 0; index < 25; index += 1) {
+    let pixel = document.createElement('div');
+    pixel.classList.add('pixel');
+    pixelBoard.appendChild(pixel);
+  }
+}
+
+generatePixelBoard();
