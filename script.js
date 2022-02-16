@@ -1,14 +1,18 @@
 const colors = document.getElementsByClassName('color');
 
-function generateColorsOfPalette(color1, color2, color3, color4) {
-  const colorsOfPalette = [color1, color2, color3, color4];
+function generateColorsOfPalette() {
+  const colorsOfPalette = ['black'];
+  for (let index = 0; index < 3; index += 1) {
+    const randomColor = 'rgb(' + Math.floor((Math.random() * 255)) + ', ' + Math.floor((Math.random() * 255)) + ', ' + Math.floor((Math.random() * 255)) + ')';
+    colorsOfPalette.push(randomColor);
+  }
   for (let index = 0; index < 4; index += 1) {
     colors[index].id = (colorsOfPalette[index]);
     colors[index].style.backgroundColor = colorsOfPalette[index];
   }
 }
 
-generateColorsOfPalette('black', 'darkcyan', 'yellowgreen', 'brown');
+generateColorsOfPalette();
 
 const pixelBoard = document.getElementById('pixel-board');
 
