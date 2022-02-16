@@ -1,5 +1,6 @@
 body {
   margin-left: 10px;
+  text-align: center;
 }
 
 #color-palette {
@@ -13,9 +14,14 @@ body {
   height: 40px;
 }
 
+#button-container {
+  margin: 10px 0;
+}
+
 #pixel-board {
+  margin: 15px auto;
   width: 210px;
-  height: 210px;;
+  height: 210px;
   display: flex;
   flex-flow: row wrap;
 }
