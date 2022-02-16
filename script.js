@@ -70,3 +70,12 @@ function resetColor() {
 }
 
 resetButton.addEventListener('click', resetColor);
+
+const input = document.createElement('input');
+const sizeButton = document.createElement('button');
+input.id = 'board-size';
+sizeButton.id = 'generate-board';
+sizeButton.innerHTML = 'VQV';
+
+buttonContainer.appendChild(input);
+buttonContainer.appendChild(sizeButton);
