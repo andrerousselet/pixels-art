@@ -52,10 +52,17 @@ for (let index = 0; index < pixels.length; index += 1) {
   pixels[index].addEventListener('click', addColorToPixel);
 }
 
-const mainContainer = document.getElementById('main-content');
 const buttonContainer = document.getElementById('button-container');
 const resetButton = document.createElement('button');
 resetButton.id = 'clear-board';
 resetButton.innerHTML = 'Limpar';
 
 buttonContainer.appendChild(resetButton);
+
+function resetColor() {
+  for (let index = 0; index < pixels.length; index += 1) {
+    pixels[index].style.backgroundColor = '';
+  }
+}
+
+resetButton.addEventListener('click', resetColor);
