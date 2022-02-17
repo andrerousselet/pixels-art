@@ -36,6 +36,7 @@ input {
   display: flex;
   flex-flow: row wrap;
 }
+
 /* 
 Últimas 3 propriedades (display, flex-flow e justify-content) "copiadas" do exercicio do Jogo da Velha, arquivo style.css (https://github.com/tryber/dojo-jogo-da-velha-fundamentos-5.4/blob/main/style.css)
 Pesquisa sobre flex-flow no site https://developer.mozilla.org/pt-BR/docs/Web/CSS/flex-direction;
