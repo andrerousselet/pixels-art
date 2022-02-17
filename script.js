@@ -1,6 +1,6 @@
 const colors = document.getElementsByClassName('color');
 const buttonContainer = document.getElementById('button-container');
-const pixelBoard = document.getElementById('pixel-board');
+const main = document.getElementById('main-content');
 const pixels = document.getElementsByClassName('pixel');
 const input = document.createElement('input');
 const sizeButton = document.createElement('button');
@@ -22,17 +22,21 @@ function generateColorsOfPalette() {
 generateColorsOfPalette();
 
 input.id = 'board-size';
+// propriedades type e min colocadas com ajuda do Tiago na mentoria.
+input.type = 'number';
+input.min = 1;
 sizeButton.id = 'generate-board';
 sizeButton.innerHTML = 'VQV';
-
 buttonContainer.appendChild(input);
 buttonContainer.appendChild(sizeButton);
 
 function addColorToPixel(event) {
+  // eslint-disable-next-line no-param-reassign
   event.target.style.backgroundColor = selectedColor;
 }
 
 function generatePixelBoard() {
+  const pixelBoard = document.getElementById('pixel-board');
   for (let index = 0; index < sizeOfBoard; index += 1) {
     const pixel = document.createElement('div');
     pixel.classList.add('pixel');
@@ -44,16 +48,25 @@ function generatePixelBoard() {
 }
 
 function defineSizeOfBoard() {
-  const size = input.value;
+  let size = input.value;
+  const pixelBoard = document.getElementById('pixel-board');
+  pixelBoard.innerHTML = '';
+  if (input.value === '') {
+    alert('Board inválido!');
+  }
+  if (size < 5) {
+    size = 5;
+  }
+  if (size > 50) {
+    size = 50;
+  }
   sizeOfBoard = size * size;
-  pixelBoard.style.width = `${(size * 40) + (40 * 0.35)}px`;
-  pixelBoard.style.height = `${(size * 40) + 10}px`;
+  pixelBoard.style.width = `${(size * 40) + (size * 2)}px`;
+  pixelBoard.style.height = `${(size * 40) + (size * 2)}px`;
   generatePixelBoard();
 }
 
 sizeButton.addEventListener('click', defineSizeOfBoard);
-
-window.onload = colors[0].classList.add('selected');
 
 function addClassSelected(event) {
   for (let index = 0; index < colors.length; index += 1) {
@@ -73,7 +86,6 @@ for (let index = 0; index < colors.length; index += 1) {
 
 resetButton.id = 'clear-board';
 resetButton.innerHTML = 'Limpar';
-
 buttonContainer.appendChild(resetButton);
 
 function resetColor() {
@@ -84,13 +96,27 @@ function resetColor() {
 
 resetButton.addEventListener('click', resetColor);
 
+window.onload = colors[0].classList.add('selected');
+
 window.onload = function generateInitialPixelBoard() {
+  const initialPixelBoard = document.createElement('section');
+  initialPixelBoard.id = 'pixel-board';
+  main.appendChild(initialPixelBoard);
   for (let index = 0; index < 25; index += 1) {
     const pixel = document.createElement('div');
     pixel.classList.add('pixel');
-    pixelBoard.appendChild(pixel);
+    initialPixelBoard.appendChild(pixel);
     for (let index2 = 0; index2 < pixels.length; index2 += 1) {
       pixels[index2].addEventListener('click', addColorToPixel);
     }
   }
-}
+};
+
+/*
+Com ajuda do Tiago na mentoria, retirei essa parte do código do início da função defineSizeOfBoard onde eu pegava o elemento, deletava, criava um novo, colocava um id e depois pegava o recem-criado novamente para aí sim seguir na função...troquei isso tudo por definir o innerHTML do elemento para uma string vazia!
+const oldPixelBoard = document.getElementById('pixel-board');
+oldPixelBoard.remove();
+const newPixelBoard = document.createElement('section');
+newPixelBoard.id = 'pixel-board';
+main.appendChild(newPixelBoard);
+*/

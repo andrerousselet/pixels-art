@@ -1,6 +1,8 @@
 body {
   margin-left: 10px;
   text-align: center;
+  font-family: sans-serif;
+  background-color: whitesmoke;
 }
 
 #color-palette {
