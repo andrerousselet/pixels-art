@@ -2,13 +2,7 @@ const colors = document.getElementsByClassName('color');
 const buttonContainer = document.getElementById('button-container');
 const main = document.getElementById('main-content');
 
-const input = document.createElement('input');
-const sizeButton = document.createElement('button');
-const resetButton = document.createElement('button');
-
-const PIXEL_BOARD = 'pixel-board';
 let selectedColor = 'rgb(0 0 0)';
-let sizeOfBoard;
 
 // Função que cria cor aleatória no padrão rgb para ser usada dentro da função generateColorsOfPalette.
 function generateRandomColor() {
@@ -34,14 +28,27 @@ function generateColorsOfPalette() {
   }
 }
 
+// Atribui à variável selectedColor a cor de fundo do elemento clicado.
+function getColor(event) {
+  selectedColor = event.target.style.backgroundColor;
+  console.log(event.target);
+}
+
+const input = document.createElement('input');
 input.id = 'board-size';
-// propriedades type e min colocadas com ajuda do Tiago na mentoria.
 input.type = 'number';
 input.min = 1;
+buttonContainer.appendChild(input);
+
+const sizeButton = document.createElement('button');
 sizeButton.id = 'generate-board';
 sizeButton.innerHTML = 'VQV';
-buttonContainer.appendChild(input);
 buttonContainer.appendChild(sizeButton);
+
+const resetButton = document.createElement('button');
+resetButton.id = 'clear-board';
+resetButton.innerHTML = 'Limpar';
+buttonContainer.appendChild(resetButton);
 
 // Função de callback que atrubui a cor selecionada (após clicar na paleta),
 // ao pixel no quadro de pixels (escolhido - clicado)
@@ -53,15 +60,11 @@ function addColorToPixel(event) {
 // Função chamada dentro de defineSizeOfBoard (abaixo) que preenhce o quadro de pixels,
 // usando um loop para gerar o número de pixels necessários (através da variável sizeofBoard),
 // adicionando a cada um a classe pixel e também um escutador de eventos que chama a função addColorToPixel.
-function generatePixelBoard() {
-  const pixelBoard = document.getElementById(PIXEL_BOARD);
+function generatePixelBoard(pixelBoard, sizeOfBoard) {
   for (let index = 0; index < sizeOfBoard; index += 1) {
     const pixel = document.createElement('div');
     pixel.classList.add('pixel');
     pixelBoard.appendChild(pixel);
-    // for (let index2 = 0; index2 < pixels.length; index2 += 1) {
-    //   pixels[index2].addEventListener('click', addColorToPixel);
-    // }
     pixel.addEventListener('click', addColorToPixel);
   }
 }
@@ -74,9 +77,9 @@ function generatePixelBoard() {
 // com a soma das bordas (1px para cada lado).
 function defineSizeOfBoard() {
   let size = input.value;
-  const pixelBoard = document.getElementById(PIXEL_BOARD);
+  const pixelBoard = document.getElementById('pixel-board');
   pixelBoard.innerHTML = '';
-  if (input.value === '') {
+  if (!input.value) {
     alert('Board inválido!');
   }
   if (size < 5) {
@@ -85,14 +88,11 @@ function defineSizeOfBoard() {
   if (size > 50) {
     size = 50;
   }
-  sizeOfBoard = size * size;
+  const sizeOfBoard = size * size;
   pixelBoard.style.width = `${(size * 40) + (size * 2)}px`;
   pixelBoard.style.height = `${(size * 40) + (size * 2)}px`;
-  generatePixelBoard();
+  generatePixelBoard(pixelBoard, sizeOfBoard);
 }
-
-// Ao clicar no botão sizeButton, a função defineSizeOfBoard é chamada.
-sizeButton.addEventListener('click', defineSizeOfBoard);
 
 // Primeiro remove a classe selected de todas as cores da paleta e depois adiciona
 // a mesma classe ao elemento clicado.
@@ -103,30 +103,11 @@ function addClassSelected(event) {
   event.target.classList.add('selected');
 }
 
-// Atribui à variável selectedColor a cor de fundo do elemento clicado.
-function getColor(event) {
-  // selectedColor = window.getComputedStyle(event.target, null).getPropertyValue('background-color');
-  // console.log(selectedColor);
-  selectedColor = event.target.style.backgroundColor;
-  // console.log(event.target.style.backgroundColor);
-}
-
 // Adiciona escutadores de eventos às cores da paleta.
 function addListenersToPalette() {
   for (let index = 0; index < colors.length; index += 1) {
     colors[index].addEventListener('click', addClassSelected);
     colors[index].addEventListener('click', getColor);
-  }
-}
-
-resetButton.id = 'clear-board';
-resetButton.innerHTML = 'Limpar';
-buttonContainer.appendChild(resetButton);
-
-function resetColor() {
-  const pixels = document.getElementsByClassName('pixel');
-  for (let index = 0; index < pixels.length; index += 1) {
-    pixels[index].style.backgroundColor = '';
   }
 }
 
@@ -136,15 +117,12 @@ function resetColor() {
 // addColorToPixel.
 function generateInitialPixelBoard() {
   const initialPixelBoard = document.createElement('section');
-  initialPixelBoard.id = PIXEL_BOARD;
+  initialPixelBoard.id = 'pixel-board';
   main.appendChild(initialPixelBoard);
   for (let index = 0; index < 25; index += 1) {
     const pixel = document.createElement('div');
     pixel.classList.add('pixel');
     initialPixelBoard.appendChild(pixel);
-    // for (let index2 = 0; index2 < pixels.length; index2 += 1) {
-    //   pixels[index2].addEventListener('click', addColorToPixel);
-    // }
     pixel.addEventListener('click', addColorToPixel);
   }
 }
@@ -155,20 +133,19 @@ function addSelectedToFirstColor() {
   colors[0].classList.add('selected');
 }
 
-// Chama funções no carregameto da página.
+function resetColor() {
+  const pixels = document.getElementsByClassName('pixel');
+  for (let index = 0; index < pixels.length; index += 1) {
+    pixels[index].style.backgroundColor = '';
+  }
+}
+
+// Chama funções no carregameto da página
 window.onload = () => {
-  addListenersToPalette();
   generateInitialPixelBoard();
   generateColorsOfPalette();
+  addListenersToPalette();
   addSelectedToFirstColor();
+  sizeButton.addEventListener('click', defineSizeOfBoard);
   resetButton.addEventListener('click', resetColor);
 };
-
-/*
-Com ajuda do Tiago na mentoria, retirei essa parte do código do início da função defineSizeOfBoard onde eu pegava o elemento, deletava, criava um novo, colocava um id e depois pegava o recem-criado novamente para aí sim seguir na função...troquei isso tudo por definir o innerHTML do elemento para uma string vazia!
-const oldPixelBoard = document.getElementById('pixel-board');
-oldPixelBoard.remove();
-const newPixelBoard = document.createElement('section');
-newPixelBoard.id = 'pixel-board';
-main.appendChild(newPixelBoard);
-*/
