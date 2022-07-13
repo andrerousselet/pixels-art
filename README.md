@@ -9,4 +9,4 @@ Este projeto trata-se de ...
 
 ## Executando aplicação
 
-> Executar arquivo index.html
+https://andrerousselet.github.io/pixels-art/
