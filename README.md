@@ -1,7 +1,8 @@
 # My Pixels Art Project
 
-# Contexto
-Este projeto trata-se de ...
+## Habilidades praticadas
+
+- Manipulação do DOM e do Javascript
 
 ## Tecnologias usadas
 
