@@ -31,7 +31,6 @@ function generateColorsOfPalette() {
 // Atribui à variável selectedColor a cor de fundo do elemento clicado.
 function getColor(event) {
   selectedColor = event.target.style.backgroundColor;
-  console.log(event.target);
 }
 
 const input = document.createElement('input');
