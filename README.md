@@ -1,13 +1,11 @@
 # My Pixels Art Project
 
-## Habilidades praticadas
+## Developed Skills
 
-- Manipulação do DOM e do Javascript
+- DOM manipulation using Javascript
 
-## Tecnologias usadas
+## Used techs
 
-> Desenvolvido usando: CSS3, HTML5, ES6
-
-## Executando aplicação
+- CSS3, HTML5, ES6
 
 https://andrerousselet.github.io/pixels-art/
