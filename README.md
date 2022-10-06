@@ -6,6 +6,6 @@
 
 ## Used techs
 
-- CSS3, HTML5, ES6
+- CSS3, HTML5, JS(ES6)
 
 https://andrerousselet.github.io/pixels-art/
